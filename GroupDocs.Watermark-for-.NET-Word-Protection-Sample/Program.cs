@@ -24,7 +24,7 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
             // AddLockedWatermark_AllowOnlyFormFields();
             // AddLockedHeaderWatermark();
 
-            Console.WriteLine("✅ Done!");
+            Console.WriteLine("Done!");
         }
 
         private static void ApplyLicense()
@@ -37,7 +37,7 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
             }
             catch
             {
-                Console.WriteLine("⚠️ Warning: License not found. Running in evaluation mode.");
+                Console.WriteLine("Warning: License not found. Running in evaluation mode.");
             }
         }
 
@@ -62,17 +62,11 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
                     ForegroundColor = Color.Red,
                     Opacity = 0.8
                 };
-
-                var options = new WordProcessingWatermarkSectionOptions
-                {
-                    SectionIndex = 0
-                };
-
                 watermarker.Add(watermark, options);
                 watermarker.Save(Path.Combine(OutputDir, "header_watermark.docx"));
             }
 
-            Console.WriteLine("✔ Header watermark added.");
+            Console.WriteLine("Header watermark added.");
         }
 
         private static void AddTiledWatermark()
@@ -114,8 +108,40 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
                 watermarker.Save(Path.Combine(OutputDir, "tiled_watermark.docx"));
             }
 
-            Console.WriteLine("✔ Tiled watermark added.");
+            Console.WriteLine("Tiled watermark added.");
         }
+
+        private static void AddTiledImageWatermark()
+        {        
+            using (Watermarker watermarker = new Watermarker(InputFile))
+            {
+                // Create the image watermark object
+                var watermark = new ImageWatermark("logo.png");
+
+                // Configure tile options
+                watermark.TileOptions = new TileOptions()
+                {
+                    LineSpacing = new MeasureValue()
+                    {
+                        MeasureType = TileMeasureType.Percent,
+                        Value = 10
+                    },
+                    WatermarkSpacing = new MeasureValue()
+                    {
+                        MeasureType = TileMeasureType.Percent,
+                        Value = 8
+                    },
+                };
+
+                // Set watermark properties
+                watermark.Opacity = 0.7;
+                watermark.RotateAngle = -30;
+
+                // Add watermark
+                watermarker.Add(watermark);
+                watermarker.Save(OutputDir, "image_watermark.docx");
+            }
+        } 
 
         private static void AddLockedWatermark_AllowOnlyFormFields()
         {
@@ -143,7 +169,7 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
                 watermarker.Save(Path.Combine(OutputDir, "locked_allow_form_fields.docx"));
             }
 
-            Console.WriteLine("✔ Locked watermark added (AllowOnlyFormFields).");
+            Console.WriteLine("Locked watermark added (AllowOnlyFormFields).");
         }
 
         private static void AddLockedHeaderWatermark()
@@ -174,7 +200,7 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
                 watermarker.Save(Path.Combine(OutputDir, "locked_header_watermark.docx"));
             }
 
-            Console.WriteLine("✔ Locked header watermark added.");
+            Console.WriteLine("Locked header watermark added.");
         }
     }
 }
