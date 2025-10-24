@@ -1,4 +1,4 @@
-# 🛡️ Protect Word Documents using GroupDocs.Watermark for .NET
+# 🛡️ Word Document Protection API Examples: 5 Methods to Add Removal-Resistant Watermarks
 
 [![Product Page](https://img.shields.io/badge/Product%20Page-2865E0?style=for-the-badge&logo=appveyor&logoColor=white)](https://products.groupdocs.com/watermark/net/) 
 [![Docs](https://img.shields.io/badge/Docs-2865E0?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.groupdocs.com/watermark/net/) 
@@ -153,6 +153,10 @@ If you are working with documents, the following topics may be useful for furthe
 
 > 💬 *This repository is part of GroupDocs educational samples.
 > All names and data are automatically generated for demonstration purposes only.*
+
+## 🏷️ Keywords
+
+`add watermark to Word` · `Word document security` · `protect Word documents` · `C# watermark code` · `.NET watermark library` · `remove watermark protection` · `locked watermarks` · `password-protected watermarks` · `document protection API` · `GroupDocs.Watermark examples` · `tiled watermarks` · `secure Word documents` · `watermark removal prevention` · `Word DOCX watermark` · `enterprise document security` · `watermark automation` · `programmatic watermarking` · `image watermark Word` · `logo watermark documents` · `watermark API .NET` · `prevent watermark deletion` · `Word document locking` · `confidential document watermark` · `legal document protection` · `batch watermark documents` · `DOCX protection methods`
 
 [![Product Page](https://img.shields.io/badge/Product%20Page-2865E0?style=for-the-badge&logo=appveyor&logoColor=white)](https://products.groupdocs.com/watermark/net/) 
 [![Docs](https://img.shields.io/badge/Docs-2865E0?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.groupdocs.com/watermark/net/) 
