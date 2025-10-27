@@ -17,12 +17,13 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
 
             ApplyLicense();
             EnsureOutputDirectory();
-
-            // Choose the example you want to run:
+            
             AddSimpleHeaderWatermark();
-            // AddTiledWatermark();
-            // AddLockedWatermark_AllowOnlyFormFields();
-            // AddLockedHeaderWatermark();
+            AddTiledWatermark();
+            //specify your file path for image watermark
+            AddTiledImageWatermark("logo.png");
+            AddLockedWatermark_AllowOnlyFormFields();
+            AddLockedHeaderWatermark();
 
             Console.WriteLine("Done!");
         }
@@ -51,24 +52,28 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
         {
             Console.WriteLine("Adding simple header watermark...");
 
-            var loadOptions = new WordProcessingLoadOptions();
-            using (var watermarker = new Watermarker(InputFile, loadOptions))
+            using (var watermarker = new Watermarker(InputFile))
             {
-                var watermark = new TextWatermark("Confidential", new Font("Arial", 19))
+                var watermark = new TextWatermark("GroupDocs Watermark", new Font("Arial", 19))
                 {
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    RotateAngle = 25,
-                    ForegroundColor = Color.Red,
-                    Opacity = 0.8
+                    ForegroundColor = Color.Blue,
+                    Opacity = 0.8,
+                    RotateAngle = 45
                 };
+                
+                WordProcessingWatermarkSectionOptions options = new WordProcessingWatermarkSectionOptions
+                    {
+                        SectionIndex = 0
+                    };
+
                 watermarker.Add(watermark, options);
                 watermarker.Save(Path.Combine(OutputDir, "header_watermark.docx"));
             }
 
             Console.WriteLine("Header watermark added.");
         }
-
         private static void AddTiledWatermark()
         {
             Console.WriteLine("Adding tiled watermark...");
@@ -76,12 +81,12 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
             var loadOptions = new WordProcessingLoadOptions();
             using (var watermarker = new Watermarker(InputFile, loadOptions))
             {
-                var watermark = new TextWatermark("Protected Document", new Font("Arial", 19))
+                var watermark = new TextWatermark("GroupDocs Watermark", new Font("Arial", 19))
                 {
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     RotateAngle = 25,
-                    ForegroundColor = Color.Red,
+                    ForegroundColor = Color.Blue,
                     Opacity = 0.9,
                     TileOptions = new TileOptions
                     {
@@ -111,12 +116,12 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
             Console.WriteLine("Tiled watermark added.");
         }
 
-        private static void AddTiledImageWatermark()
+        private static void AddTiledImageWatermark(string imageWatermarkFilePath)
         {        
             using (Watermarker watermarker = new Watermarker(InputFile))
             {
                 // Create the image watermark object
-                var watermark = new ImageWatermark("logo.png");
+                var watermark = new ImageWatermark(imageWatermarkFilePath);
 
                 // Configure tile options
                 watermark.TileOptions = new TileOptions()
@@ -139,7 +144,7 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
 
                 // Add watermark
                 watermarker.Add(watermark);
-                watermarker.Save(OutputDir, "image_watermark.docx");
+                watermarker.Save(Path.Combine(OutputDir, "image_tiled_watermark.docx"));
             }
         } 
 
@@ -149,13 +154,13 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
 
             using (var watermarker = new Watermarker(InputFile))
             {
-                var watermark = new TextWatermark("Do Not Edit", new Font("Arial", 36, FontStyle.Bold | FontStyle.Italic))
+                var watermark = new TextWatermark("GroupDocs Watermark", new Font("Arial", 36, FontStyle.Bold | FontStyle.Italic))
                 {
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     Opacity = 0.4,
                     RotateAngle = 45,
-                    ForegroundColor = Color.Red
+                    ForegroundColor = Color.Blue
                 };
 
                 var options = new WordProcessingWatermarkPagesOptions
@@ -179,12 +184,12 @@ namespace GroupDocs.Watermark_for_.NET_Word_Protection_Sample
             var loadOptions = new WordProcessingLoadOptions();
             using (var watermarker = new Watermarker(InputFile, loadOptions))
             {
-                var watermark = new TextWatermark("Company Confidential", new Font("Arial", 19))
+                var watermark = new TextWatermark("GroupDocs Watermark", new Font("Arial", 19))
                 {
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     RotateAngle = 25,
-                    ForegroundColor = Color.Red,
+                    ForegroundColor = Color.Blue,
                     Opacity = 0.8
                 };
 
