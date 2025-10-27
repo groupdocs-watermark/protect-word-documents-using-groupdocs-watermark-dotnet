@@ -124,7 +124,6 @@ This sophisticated approach combines locked headers with Microsoft Word's editab
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     RotateAngle = 25,
-                    ForegroundColor = Color.Blue,
                     Opacity = 0.8
                 };
 
