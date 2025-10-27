@@ -1,4 +1,4 @@
-# 🛡️ Word Document Protection API Examples: 5 Methods to Add Removal-Resistant Watermarks
+# 🛡️ 5 Secure Methods to Add Watermarks to Word Documents
 
 [![Product Page](https://img.shields.io/badge/Product%20Page-2865E0?style=for-the-badge&logo=appveyor&logoColor=white)](https://products.groupdocs.com/watermark/net/) 
 [![Docs](https://img.shields.io/badge/Docs-2865E0?style=for-the-badge&logo=Hugo&logoColor=white)](https://docs.groupdocs.com/watermark/net/) 
