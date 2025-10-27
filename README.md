@@ -8,7 +8,7 @@
 
 ## 📖 About This Repository
 
-This repository demonstrates practical implementations of **GroupDocs.Watermark for .NET, a tool for protecting Microsoft Word documents using various watermarking techniques.
+This repository demonstrates practical implementations of **GroupDocs.Watermark for .NET**, a tool for protecting Microsoft Word documents using various watermarking techniques.
 
 The examples show how to: - Add simple and tiled text watermarks
 - Lock headers and specific document sections with passwords
