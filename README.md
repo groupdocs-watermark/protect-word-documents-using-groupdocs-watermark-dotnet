@@ -67,34 +67,37 @@ security.
 Image watermarks take protection to the next level by using your company logo, signature, or custom graphics instead of plain text. When tiled across the document, they create a professional security layer that's harder to replicate or forge than simple text watermarks.
 
 ```csharp
-private static void AddImageWatermark()
-{    
-    using (Watermarker watermarker = new Watermarker(InputFile))
-    {
-        // Create the image watermark object
-        var watermark = new ImageWatermark("logo.png");
-        // Configure tile options
-        watermark.TileOptions = new TileOptions()
-        {
-            LineSpacing = new MeasureValue()
+        private static void AddTiledImageWatermark(string imageWatermarkFilePath)
+        {        
+            using (Watermarker watermarker = new Watermarker(InputFile))
             {
-                MeasureType = TileMeasureType.Percent,
-                Value = 10
-            },
-            WatermarkSpacing = new MeasureValue()
-            {
-                MeasureType = TileMeasureType.Percent,
-                Value = 8
-            },
-        };
-        // Set watermark properties
-        watermark.Opacity = 0.7;
-        watermark.RotateAngle = -30;
-        // Add watermark
-        watermarker.Add(watermark);
-        watermarker.Save(Path.Combine(OutputDir, "image_watermark_word.docx"));
-    }
-} 
+                // Create the image watermark object
+                var watermark = new ImageWatermark(imageWatermarkFilePath);
+
+                // Configure tile options
+                watermark.TileOptions = new TileOptions()
+                {
+                    LineSpacing = new MeasureValue()
+                    {
+                        MeasureType = TileMeasureType.Percent,
+                        Value = 10
+                    },
+                    WatermarkSpacing = new MeasureValue()
+                    {
+                        MeasureType = TileMeasureType.Percent,
+                        Value = 8
+                    },
+                };
+
+                // Set watermark properties
+                watermark.Opacity = 0.7;
+                watermark.RotateAngle = -30;
+
+                // Add watermark
+                watermarker.Add(watermark);
+                watermarker.Save(Path.Combine(OutputDir, "image_tiled_watermark.docx"));
+            }
+        } 
 ```
 **See the professional image watermark in action:**
 
@@ -109,32 +112,35 @@ This sophisticated approach combines locked headers with Microsoft Word's editab
 **How it works:** The entire header section (containing your watermark) is locked with read-only protection. The document body is then marked with editable ranges, creating a security model where users can only modify pre-approved sections.
 
 ```csharp
-private static void AddLockedHeaderWatermark()
-{
-    Console.WriteLine("Adding locked header watermark...");
-    var loadOptions = new WordProcessingLoadOptions();
-    using (var watermarker = new Watermarker(InputFile, loadOptions))
-    {
-        var watermark = new TextWatermark("Company Confidential", new Font("Arial", 19))
+        private static void AddLockedHeaderWatermark()
         {
-            VerticalAlignment = VerticalAlignment.Center,
-            HorizontalAlignment = HorizontalAlignment.Center,
-            RotateAngle = 25,
-            ForegroundColor = Color.Red,
-            Opacity = 0.8
-        };
-        var options = new WordProcessingWatermarkSectionOptions
-        {
-            SectionIndex = 0,
-            IsLocked = true,
-            Password = "012345",
-            LockType = WordProcessingLockType.ReadOnly
-        };
-        watermarker.Add(watermark, options);
-        watermarker.Save(Path.Combine(OutputDir, "locked_header_watermark.docx"));
-    }
-    Console.WriteLine("Locked header watermark added.");
-}
+            Console.WriteLine("Adding locked header watermark...");
+
+            var loadOptions = new WordProcessingLoadOptions();
+            using (var watermarker = new Watermarker(InputFile, loadOptions))
+            {
+                var watermark = new TextWatermark("GroupDocs Watermark", new Font("Arial", 19))
+                {
+                    VerticalAlignment = VerticalAlignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    RotateAngle = 25,
+                    Opacity = 0.8
+                };
+
+                var options = new WordProcessingWatermarkSectionOptions
+                {
+                    SectionIndex = 0,
+                    IsLocked = true,
+                    Password = "012345",
+                    LockType = WordProcessingLockType.ReadOnly
+                };
+
+                watermarker.Add(watermark, options);
+                watermarker.Save(Path.Combine(OutputDir, "locked_header_watermark.docx"));
+            }
+
+            Console.WriteLine("Locked header watermark added.");
+        }
 ```
 
 **Watch the locked header protection:**
